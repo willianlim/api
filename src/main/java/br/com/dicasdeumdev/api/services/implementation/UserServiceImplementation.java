@@ -18,6 +18,6 @@ public class UserServiceImplementation implements UserService {
     @Override
     public User findById(Integer id) {
         Optional<User> object = repository.findById(id);
-        return (object.orElseThrow(() -> new ObjectNotFoundException("Objeto não concentration")));
+        return (object.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado")));
     }
 }
