@@ -98,7 +98,7 @@ class UserResourceTest {
         ResponseEntity<UserDTO> response = userResource.create(userDTO);
 
         assertEquals(ResponseEntity.class, response.getClass());
-        assertEquals(null, response.getBody());
+        assertNull(response.getBody());
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
         assertNotNull(response.getHeaders().get("Location"));
     }
