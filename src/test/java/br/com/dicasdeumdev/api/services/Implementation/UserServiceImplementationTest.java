@@ -157,6 +157,20 @@ class UserServiceImplementationTest {
         verify(userRepository, times(1)).deleteById(anyInt());
     }
 
+    @Test
+    void delteWithObjectNotFoundException() {
+
+        when(userRepository.findById(anyInt()))
+                .thenThrow(new ObjectNotFoundException(MESSAGE));
+
+        try {
+            userServiceImplementation.delete(ID);
+        } catch (Exception exception) {
+            assertEquals(ObjectNotFoundException.class, exception.getClass());
+            assertEquals(MESSAGE, exception.getMessage());
+        }
+    }
+
     private void startUser() {
         user = new User(ID, NAME, EMAIL, PASSWORD);
         userDTO = new UserDTO(ID, NAME, EMAIL, PASSWORD);
